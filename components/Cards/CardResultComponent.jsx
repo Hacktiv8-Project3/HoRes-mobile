@@ -3,7 +3,7 @@ import { View, Image, Text, TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-function CardFavComponent({ image, title }) {
+const CardResultComponent = ({ image, title }) => {
   return (
     <TouchableOpacity style={tw`bg-white rounded-lg shadow mb-4`}>
       <Image source={image} style={tw`w-full h-48 rounded-t-lg`} />
@@ -24,6 +24,6 @@ function CardFavComponent({ image, title }) {
       </View>
     </TouchableOpacity>
   );
-}
+};
 
-export default CardFavComponent;
+export default CardResultComponent;

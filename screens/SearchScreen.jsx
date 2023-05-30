@@ -5,9 +5,9 @@ import CardResultComponent from "../components/Cards/CardResultComponent";
 
 const SearchScreen = () => {
   return (
-    <View style={tw`flex-1`}>
-      <View style={tw`flex-1 bg-gray-100`}>
-        <ScrollView contentContainerStyle={tw`p-4`}>
+    <View className="flex-1">
+      <View className="flex-1 bg-gray-100">
+        <ScrollView contentContainer className="p-4">
           <CardResultComponent
             image={require("../assets/sumba.jpg")}
             title="Beautiful Apartment"

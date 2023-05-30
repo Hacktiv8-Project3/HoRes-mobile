@@ -15,33 +15,33 @@ const bookings = [
 
 function ProfileScreen() {
   const renderBookingItem = ({ item }) => (
-    <View style={tw`bg-white rounded-lg shadow p-4 mb-4`}>
-      <Text style={tw`text-lg font-bold mb-2`}>{item.name}</Text>
-      <Text style={tw`text-gray-500 mb-2`}>
+    <View className="bg-white rounded-lg shadow p-4 mb-4">
+      <Text className="text-lg font-bold mb-2">{item.name}</Text>
+      <Text className="text-gray-500 mb-2">
         {item.checkIn} - {item.checkOut}
       </Text>
-      <Text style={tw`text-gray-500`}>
+      <Text className="text-gray-500">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </Text>
     </View>
   );
   return (
     <View>
-      <View style={tw`p-4`}>
-        <View style={tw`flex-row bg-white mb-2`}>
+      <View className="p-4">
+        <View className="flex-row bg-white mb-2">
           <View>
             <Image
               source={require("../assets/avatar.png")}
-              style={tw`w-24 h-24 rounded-full mb-4 m-4`}
+              className="w-24 h-24 rounded-full mb-4 m-4"
             />
           </View>
-          <View style={tw`justify-center px-4`}>
-            <Text style={tw`text-2xl font-bold`}>John Doe</Text>
-            <Text style={tw`text-gray-500 mb-4`}>john.doe@example.com</Text>
+          <View className="justify-center px-4">
+            <Text className="text-2xl font-bold">John Doe</Text>
+            <Text className="text-gray-500 mb-4">john.doe@example.com</Text>
           </View>
         </View>
         <View>
-          <Text style={tw`text-lg mb-2`}>Booking History</Text>
+          <Text className="text-lg mb-2">Booking History</Text>
           <FlatList
             data={bookings}
             renderItem={renderBookingItem}

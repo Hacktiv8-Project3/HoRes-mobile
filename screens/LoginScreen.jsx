@@ -13,18 +13,18 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.form}>
         <TextInput
-          style={tw`border-b-2 border-green-500 py-2 px-4 mb-4 text-gray-700`}
+          className="border-b-2 border-green-500 py-2 px-4 mb-4 text-gray-700"
           placeholder="Email"
           placeholderTextColor="#A0AEC0"
         />
         <TextInput
-          style={tw`border-b-2 border-green-500 py-2 px-4 mb-4 text-gray-700`}
+          className="border-b-2 border-green-500 py-2 px-4 mb-4 text-gray-700"
           placeholder="Password"
           placeholderTextColor="#A0AEC0"
           secureTextEntry
         />
-        <TouchableOpacity style={tw`bg-green-500 py-3 rounded`}>
-          <Text style={tw`text-white text-center font-bold`}>Sign In</Text>
+        <TouchableOpacity className="bg-green-500 py-3 rounded">
+          <Text className="text-white text-center font-bold">Sign In</Text>
         </TouchableOpacity>
       </View>
     </View>

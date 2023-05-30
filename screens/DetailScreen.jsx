@@ -1,35 +1,132 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import tw from "tailwind-react-native-classnames";
+import { ROUTES } from "../constants";
+import { AntDesign } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
-function DetailScreen() {
+function DetailScreen({ route }) {
   // const { destination } = route.params;
-  const route = useRoute();
+  const navigation = useNavigation();
+  // const route = useRoute();
+  const data = route?.params?.param;
 
   return (
     <View style={styles.container}>
-      <ScrollView style={tw`bg-white`}>
+      <ScrollView className="bg-white">
         <Image
-          source={require("../assets/sumba.jpg")}
-          style={tw`w-full h-64`}
+          source={{
+            uri: data?.photo?.images?.large?.url
+              ? data?.photo?.images?.large?.url
+              : "../../assets/sumba.jpg",
+          }}
+          className="w-full h-64"
           resizeMode="cover"
         />
-        <View style={tw`p-4`}>
-          <Text style={tw`text-2xl font-bold mb-2`}>Beautiful House</Text>
-          <Text style={tw`text-gray-500 mb-4`}>Los Angeles, CA</Text>
-          <Text style={tw`text-gray-700 mb-4`}>
+        <View className="absolute inset-x-0 top-8 px-6">
+          <TouchableOpacity
+            className="w-8 h-8 rounded-md items-center justify-center bg-white"
+            onPress={() => navigation.navigate(ROUTES.EXPLORE)}
+          >
+            <AntDesign name="left" size={24} color="#0d9488" />
+          </TouchableOpacity>
+        </View>
+        <View className="absolute flex-row justify-between inset-x-0 top-[200px] px-6">
+          <View className="flex-row items-center">
+            <Text className="text-2xl font-bold text-gray-100">
+              {data?.price}
+            </Text>
+          </View>
+        </View>
+        <View className="p-4">
+          <Text className="text-2xl font-bold mb-2 text-green-600">
+            {data?.name}
+          </Text>
+          <View className="flex-row">
+            <Fontisto name="map-marker-alt" size={18} color="gray" />
+            <Text className="ml-2 text-gray-500 mb-4">
+              {data?.location_string}
+            </Text>
+          </View>
+          <View className="mt-4 flex-row items-center justify-between">
+            {data?.rating && (
+              <View className="flex-row items-center">
+                <View className="w-12 h-12 rounded-2xl mr-2 bg-green-100 items-center justify-center shadow-md">
+                  <MaterialIcons name="star-rate" size={24} color="#0d9488" />
+                </View>
+                <View>
+                  <Text className="text-gray-600">{data?.rating}</Text>
+                  <Text className="text-gray-600">Ratings</Text>
+                </View>
+              </View>
+            )}
+            {data?.price_level && (
+              <View className="flex-row items-center ">
+                <View className="w-12 h-12 rounded-2xl mr-2 bg-green-100 items-center justify-center shadow-md">
+                  <MaterialIcons
+                    name="attach-money"
+                    size={24}
+                    color="#0d9488"
+                  />
+                </View>
+                <View>
+                  <Text className="text-gray-600">{data?.price_level}</Text>
+                  <Text className="text-gray-600">Price Level</Text>
+                </View>
+              </View>
+            )}
+            {data?.bearing && (
+              <View className="flex-row items-center ">
+                <View className="w-12 h-12 rounded-2xl mr-2 bg-green-100 items-center justify-center shadow-md">
+                  <FontAwesome name="map-signs" size={24} color="#0d9488" />
+                </View>
+                <View>
+                  <Text className="text-gray-600">{data?.bearing}</Text>
+                  <Text className="text-gray-600">Bearing</Text>
+                </View>
+              </View>
+            )}
+          </View>
+          <Text className="text-gray-700 my-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis
             diam metus, ac commodo justo convallis ut. Integer sed vestibulum
             odio. Nullam a dui tellus. Proin vitae turpis consequat, commodo
             justo et, tempor libero. Quisque nec tellus elementum.
           </Text>
-          <View style={tw`flex-row items-center`}>
-            <Image
-              source={require("../assets/avatar.png")}
-              style={tw`w-8 h-8 rounded-full mr-2`}
-            />
-            <Text style={tw`text-gray-700 font-bold`}>John Doe</Text>
+          <View className="mt-4 bg-gray-100 rounded-2xl px-4 py-2">
+            {data?.phone && (
+              <View className="items-center flex-row mt-2">
+                <FontAwesome name="phone" size={24} color="#0d9488" />
+                <Text className="ml-2 text-lg">{data?.phone}</Text>
+              </View>
+            )}
+            {data?.email && (
+              <View className="items-center flex-row mt-2">
+                <FontAwesome name="envelope" size={24} color="#0d9488" />
+                <Text className="ml-2 text-lg">{data?.email}</Text>
+              </View>
+            )}
+            {data?.address && (
+              <View className="items-center flex-row mt-2">
+                <FontAwesome name="map-pin" size={24} color="#0d9488" />
+                <Text className="ml-2 text-lg">{data?.address}</Text>
+              </View>
+            )}
+            <View className="mt-4 px-4 py-4 rounded-lg bg-green-600 items-center justify-center">
+              <Text className="text-2xl font-semibold uppercase tracking-wider text-gray-100">
+                Book Now
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>

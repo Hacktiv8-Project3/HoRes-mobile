@@ -3,7 +3,7 @@ export default {
 
   SEARCH: "Search",
   DETAIL: "Detail",
-  BOOK: "Book",
+  BOOK: "Booking",
 
   EXPLORE: "Explore",
   FAVORITES: "Favorites",

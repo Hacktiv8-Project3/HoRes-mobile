@@ -8,7 +8,7 @@ const TopDestinationsComponent = ({ hotels }) => {
 
   return (
     <View className="flex-1 justify-center items-center">
-      <View className="flex-1 bg-white pl-4">
+      <View className="flex-1 bg-white">
         <Text className="text-2xl font-bold py-4">Top Destinations</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {hotels?.map((destination, idx) => (

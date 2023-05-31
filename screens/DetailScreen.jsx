@@ -8,18 +8,31 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import tw from "tailwind-react-native-classnames";
 import { ROUTES } from "../constants";
 import { AntDesign } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useSelector } from "react-redux";
 
 function DetailScreen({ route }) {
   // const { destination } = route.params;
   const navigation = useNavigation();
   // const route = useRoute();
   const data = route?.params?.param;
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const handleCheck = () => {
+    if (isAuthenticated) {
+      // Navigasi ke halaman Booking jika pengguna telah login
+      navigation.navigate(ROUTES.BOOK);
+    } else {
+      // Navigasi ke halaman Login jika pengguna belum login
+      navigation.navigate(ROUTES.LOGIN);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -33,23 +46,26 @@ function DetailScreen({ route }) {
           className="w-full h-64"
           resizeMode="cover"
         />
-        <View className="absolute inset-x-0 top-8 px-6">
+        <View className="flex-row absolute inset-x-0 top-8 px-6 justify-between">
           <TouchableOpacity
             className="w-8 h-8 rounded-md items-center justify-center bg-white"
             onPress={() => navigation.navigate(ROUTES.EXPLORE)}
           >
             <AntDesign name="left" size={24} color="#0d9488" />
           </TouchableOpacity>
+          <TouchableOpacity className="w-8 h-8 rounded-md items-center justify-center bg-white">
+            <Icon name="heart-o" size={24} color="#0d9488" />
+          </TouchableOpacity>
         </View>
         <View className="absolute flex-row justify-between inset-x-0 top-[200px] px-6">
           <View className="flex-row items-center">
-            <Text className="text-2xl font-bold text-gray-100">
+            <Text className="text-2xl font-bold text-[#78e8de]">
               {data?.price}
             </Text>
           </View>
         </View>
         <View className="p-4">
-          <Text className="text-2xl font-bold mb-2 text-green-600">
+          <Text className="text-2xl font-bold mb-2 text-[#0d9488]">
             {data?.name}
           </Text>
           <View className="flex-row">
@@ -122,11 +138,15 @@ function DetailScreen({ route }) {
                 <Text className="ml-2 text-lg">{data?.address}</Text>
               </View>
             )}
-            <View className="mt-4 px-4 py-4 rounded-lg bg-green-600 items-center justify-center">
+            <TouchableOpacity
+              className="mt-4 px-4 py-4 rounded-lg bg-[#0d9488] items-center justify-center"
+              onPress={handleCheck}
+              // onPress={() => navigation.navigate(ROUTES.BOOK)}
+            >
               <Text className="text-2xl font-semibold uppercase tracking-wider text-gray-100">
                 Book Now
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

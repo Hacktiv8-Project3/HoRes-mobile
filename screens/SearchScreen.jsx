@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import tw from "tailwind-react-native-classnames";
 import CardResultComponent from "../components/Cards/CardResultComponent";
 
 const SearchScreen = () => {

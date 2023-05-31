@@ -1,11 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const BookingScreen = () => {
+  const navigation = useNavigation();
   return (
-    <View>
+    <SafeAreaView>
       <Text>BookingScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

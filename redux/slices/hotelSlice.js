@@ -40,7 +40,7 @@ export const fetchHotelData = createAsyncThunk(
   }
 );
 
-const apiSlice = createSlice({
+const hotelSlice = createSlice({
   name: "api",
   initialState,
   reducers: {},
@@ -64,4 +64,4 @@ const apiSlice = createSlice({
 });
 
 export const getAllHotel = (state) => state.hotels.data;
-export default apiSlice.reducer;
+export default hotelSlice.reducer;

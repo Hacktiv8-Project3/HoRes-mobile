@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: null,
   isAuthenticated: false,
-  user: null,
-  prevScreen: null,
+  user: [],
 };
 
 const authSlice = createSlice({
@@ -18,19 +17,17 @@ const authSlice = createSlice({
     clearToken: (state) => {
       state.token = null;
       state.isAuthenticated = false;
-      state.user = null;
-      state.prevScreen = null; // Reset prevScreen saat logout
+      // state.user = null;
     },
     setUser: (state, action) => {
-      state.user = action.payload;
-    },
-    setPrevScreen: (state, action) => {
-      state.prevScreen = action.payload;
+      const newAction = action.payload;
+      if (!state.user.length) {
+        state.user = newAction;
+      }
     },
   },
 });
 
-export const { setToken, clearToken, setUser, setPrevScreen } =
-  authSlice.actions;
+export const { setToken, clearToken, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

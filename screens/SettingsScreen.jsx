@@ -10,7 +10,7 @@ function SettingScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.user);
-  const isAuthenticated = useSelector((state) => state.auth.authenticated);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const handleLogout = async () => {
     // Hapus token dari penyimpanan aman (secure storage)
@@ -23,7 +23,7 @@ function SettingScreen() {
   return (
     <>
       <View className="flex-1">
-        {isAuthenticated ? (
+        {!isAuthenticated ? (
           <></>
         ) : (
           <TouchableOpacity onPress={handleLogout}>

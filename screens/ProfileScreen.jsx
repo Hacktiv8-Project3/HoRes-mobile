@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import { ROUTES } from "../constants";
@@ -18,7 +18,9 @@ const bookings = [
 function ProfileScreen() {
   const navigation = useNavigation();
   const userData = useSelector((state) => state.auth.user);
-  const isAuthenticated = useSelector((state) => state.auth.authenticated);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  // console.log(userData);
   const renderBookingItem = ({ item }) => (
     <View className="bg-white rounded-lg shadow p-4 mb-4">
       <Text className="text-lg font-bold mb-2">{item.name}</Text>
@@ -32,7 +34,7 @@ function ProfileScreen() {
   );
   return (
     <>
-      {!isAuthenticated ? (
+      {isAuthenticated ? (
         <View>
           <View className="p-4">
             <View className="flex-row bg-white mb-2">

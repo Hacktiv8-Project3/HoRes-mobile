@@ -5,9 +5,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken, setUser, setPrevScreen } from "../redux/slices/authSlice";
 import * as SecureStore from "expo-secure-store";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,9 +32,11 @@ const LoginScreen = () => {
       };
 
       await SecureStore.setItemAsync("token", token);
-
+      if (!userData?.email) {
+        dispatch(setUser(user));
+      } else {
+      }
       dispatch(setToken(token));
-      dispatch(setUser(user));
 
       // const prevScreen = useSelector((state) => state.auth.prevScreen);
 

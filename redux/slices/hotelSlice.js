@@ -12,31 +12,44 @@ export const fetchHotelData = createAsyncThunk(
   "hotel/fetchHotelData",
   async () => {
     const {
-      data: { data },
-    } = await axios.get(
-      `https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary`,
+      data: { result },
+    } = await axios.get(`https://booking-com.p.rapidapi.com/v1/static/hotels`, {
+      params: { page: "0" },
+      headers: {
+        "X-RapidAPI-Key": "ba4942102fmsh7a7e7d386ce654ep1b5c15jsn04a25cdda64e",
+        "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
+      },
+    });
+    const response = await axios.get(
+      `https://booking-com.p.rapidapi.com/v1/hotels/photos`,
       {
         params: {
-          bl_latitude: "11.847676",
-          tr_latitude: "12.838442",
-          bl_longitude: "109.095887",
-          tr_longitude: "109.149359",
-          restaurant_tagcategory_standalone: "10591",
-          restaurant_tagcategory: "10591",
-          limit: "30",
-          currency: "USD",
-          open_now: "false",
-          lunit: "km",
-          lang: "en_US",
+          hotel_id: "1377073",
+          locale: "en-gb",
         },
         headers: {
           "X-RapidAPI-Key":
             "ba4942102fmsh7a7e7d386ce654ep1b5c15jsn04a25cdda64e",
-          "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+          "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
         },
       }
     );
-    return data;
+
+    const data1 = result;
+    const data2 = response.data;
+    const mergedData = data1.map((item, index) => {
+      return {
+        ...item,
+        ...data2[index],
+        price: Math.floor(Math.random() * 1000)
+          .toString()
+          .padStart(3, "0"),
+      };
+    });
+    // return { data1, data2 };
+    return mergedData.slice(0, 10);
+
+    // return result;
   }
 );
 
@@ -51,10 +64,10 @@ const hotelSlice = createSlice({
       })
       .addCase(fetchHotelData.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // state.data = action.payload;
-        if (!state.data.length) {
-          state.data = action.payload;
-        }
+        state.data = action.payload;
+        // if (!state.data.length) {
+        //   state.data = action.payload;
+        // }
       })
       .addCase(fetchHotelData.rejected, (state, action) => {
         state.status = "failed";

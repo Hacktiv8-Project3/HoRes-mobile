@@ -7,10 +7,17 @@ import ProfileScreen from "../../screens/ProfileScreen";
 import SettingsScreen from "../../screens/SettingsScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { ROUTES } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
 const NavbarComponent = () => {
+
+  const navigation = useNavigation();
+  const userData = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <Tab.Navigator
       initialRouteName="Explore"
@@ -63,16 +70,19 @@ const NavbarComponent = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={ROUTES.SETTINGS}
-        component={SettingsScreen}
-        options={{
-          tabBarLabel: "Settings",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="settings" color={color} size={size} />
-          ),
-        }}
-      />
+
+      {isAuthenticated && (
+        <Tab.Screen
+          name={ROUTES.SETTINGS}
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: "Settings",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="settings" color={color} size={size} />
+            ),
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };

@@ -6,6 +6,7 @@ import { ROUTES } from "../../constants";
 import LoginScreen from "../../screens/LoginScreen";
 import BookingScreen from "../../screens/BookingScreen";
 import SearchScreen from "../../screens/SearchScreen";
+import AccountScreen from "../../screens/AccountScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrevScreen } from "../../redux/slices/authSlice";
 import { LinearGradient } from "expo-linear-gradient";
@@ -69,6 +70,19 @@ const NavigateComponent = () => {
         })}
       />
       <Stack.Screen name={ROUTES.EXPLORE} component={NavbarComponent} />
+
+      <Stack.Screen 
+        name={ROUTES.ACCOUNT} 
+        component={AccountScreen} 
+        options={{ 
+          headerShown:true,
+          headerStyle: {
+            backgroundColor: "#0d9488"
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: 'center', 
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -31,7 +31,7 @@ function ProfileScreen() {
       {isAuthenticated ? (
         <ScrollView>
           <View className="p-4">
-            <View className="flex-row bg-white mb-2">
+            <View className="flex-row bg-white mb-2 rounded-lg">
               <View>
                 <Image
                   source={require("../assets/avatar.png")}
@@ -96,7 +96,7 @@ function ProfileScreen() {
       ) : (
         <View className="flex-1 justify-center items-center ">
           <TouchableOpacity
-            className="py-3 rounded w-[100%]"
+            className="py-3 rounded w-[80%]"
             onPress={() => navigation.navigate(ROUTES.LOGIN)}
           >
             <LinearGradient

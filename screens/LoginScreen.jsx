@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { setToken, setUser, setPrevScreen } from "../redux/slices/authSlice";
@@ -43,7 +44,7 @@ const LoginScreen = () => {
       // }
     } else {
       // Jika username atau password tidak valid, tampilkan pesan error
-      console.log("Email atau password salah");
+      Alert.alert("Email atau password salah!", "Periksa kembali inputan Anda");
     }
   };
 

@@ -5,6 +5,7 @@ import ExploreScreen from "../../screens/ExploreScreen";
 import FavoritesScreen from "../../screens/FavoritesScreen";
 import ProfileScreen from "../../screens/ProfileScreen";
 import SettingsScreen from "../../screens/SettingsScreen";
+import { LinearGradient } from "expo-linear-gradient";
 import { ROUTES } from "../../constants";
 
 const Tab = createBottomTabNavigator();
@@ -21,10 +22,18 @@ const NavbarComponent = () => {
           backgroundColor: "#0d9488",
         },
         headerTitleAlign: "center",
+        headerBackground: () => (
+          <LinearGradient
+            colors={["#0d9488", "#ffff00"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 4, y: 0 }}
+            style={{ flex: 1 }}
+          />
+        ),
       }}
     >
       <Tab.Screen
-        name={ROUTES.EXPLORE}
+        name={ROUTES.EXPLORETAB}
         component={ExploreScreen}
         options={{
           tabBarLabel: "Explore",

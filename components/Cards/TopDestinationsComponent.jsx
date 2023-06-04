@@ -21,8 +21,8 @@ const TopDestinationsComponent = ({ hotels }) => {
             >
               <Image
                 source={{
-                  uri: destination?.photo?.images?.medium?.url
-                    ? destination?.photo?.images?.medium?.url
+                  uri: destination?.url_1440
+                    ? destination?.url_1440
                     : "../../assets/sumba.jpg",
                 }}
                 className="w-40 h-32 rounded-xl"

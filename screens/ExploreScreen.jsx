@@ -23,14 +23,9 @@ function ExploreScreen() {
   const dispatch = useDispatch();
   const hotels = useSelector(getAllHotel);
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const user = useSelector((state) => state.auth.user);
-
-  const navigation = useNavigation();
-
   useEffect(() => {
     dispatch(fetchHotelData());
-    // console.warn(hotels);
+    // console.log(hotels);
   }, [dispatch]);
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -45,14 +40,11 @@ function ExploreScreen() {
               <>
                 <SearchBarComponent />
                 <TopDestinationsComponent hotels={hotels} />
-                <PopularDestinationsComponent />
-                <CardResultComponent
-                  image={require("../assets/sumba.jpg")}
-                  title="Beautiful Apartment"
-                />
+                <PopularDestinationsComponent hotels={hotels} />
+                <CardResultComponent hotels={hotels} />
               </>
             ) : (
-              <PopularDestinationsComponent />
+              <></>
             )}
           </View>
         )}

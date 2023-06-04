@@ -8,6 +8,7 @@ import BookingScreen from "../../screens/BookingScreen";
 import SearchScreen from "../../screens/SearchScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrevScreen } from "../../redux/slices/authSlice";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,14 @@ const NavigateComponent = () => {
           backgroundColor: "#0d9488",
         },
         headerTitleAlign: "center",
+        headerBackground: () => (
+          <LinearGradient
+            colors={["#0d9488", "#ffff00"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 4, y: 0 }}
+            style={{ flex: 1 }}
+          />
+        ),
       }}
       initialRouteName={ROUTES.EXPLORE}
     >

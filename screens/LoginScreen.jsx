@@ -11,6 +11,7 @@ import { setToken, setUser, setPrevScreen } from "../redux/slices/authSlice";
 import * as SecureStore from "expo-secure-store";
 import { useNavigation } from "@react-navigation/native";
 import { ROUTES } from "../constants";
+import { LinearGradient } from "expo-linear-gradient";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -47,31 +48,37 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <TextInput
-          className="border-b-2 border-[#0d9488] py-2 px-4 mb-4 text-gray-700"
-          placeholder="Email"
-          placeholderTextColor="#A0AEC0"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          className="border-b-2 border-[#0d9488] py-2 px-4 mb-4 text-gray-700"
-          placeholder="Password"
-          placeholderTextColor="#A0AEC0"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TouchableOpacity
-          className="bg-[#0d9488] py-3 rounded"
-          onPress={handleLogin}
-        >
-          <Text className="text-white text-center font-bold">Sign In</Text>
-        </TouchableOpacity>
+    <>
+      <View style={styles.container}>
+        <View style={styles.form}>
+          <TextInput
+            className="border-b-2 border-[#0d9488] py-2 px-4 mb-4 text-gray-700"
+            placeholder="Email"
+            placeholderTextColor="#A0AEC0"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            className="border-b-2 border-[#0d9488] py-2 px-4 mb-4 text-gray-700"
+            placeholder="Password"
+            placeholderTextColor="#A0AEC0"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity className="py-3 rounded-full" onPress={handleLogin}>
+            <LinearGradient
+              colors={["#0d9488", "#ffff00"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 4, y: 0 }}
+              style={{ padding: 10, borderRadius: 20 }}
+            >
+              <Text className="text-white text-center font-bold">Sign In</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -82,11 +89,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F7F7F7",
     padding: 20,
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 40,
   },
   form: {
     width: "100%",

@@ -13,6 +13,7 @@ const CardResultComponent = ({ hotels }) => {
         {hotels.map((destination, idx) => (
           <TouchableOpacity
             className="bg-white rounded-lg shadow mb-4"
+            key={idx}
             onPress={() =>
               navigation.navigate(ROUTES.DETAIL, { param: destination })
             }

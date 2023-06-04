@@ -10,4 +10,6 @@ export default {
   FAVORITES: "Favorites",
   PROFILE: "Profile",
   SETTINGS: "Settings",
+
+  ACCOUNT:"Account",
 };

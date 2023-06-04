@@ -19,16 +19,16 @@ function ProfileScreen() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const bookings = useSelector((state) => state.booking.bookingsData);
   // Filter data booking berdasarkan pengguna yang login
-  const userBookings = bookings.filter(
-    (booking) => booking?.email === userData?.email
-  );
+  // const userBookings = bookings.filter(
+  //   (booking) => booking?.email === userData?.email
+  // );
   // console.log("ini userbooking", bookings);
   return (
     <>
       {isAuthenticated ? (
         <ScrollView>
           <View className="p-4">
-            <View className="flex-row bg-white mb-2">
+            <View className="flex-row bg-white mb-2 rounded-lg">
               <View>
                 <Image
                   source={require("../assets/avatar.png")}
@@ -51,9 +51,9 @@ function ProfileScreen() {
               <Text className="text-lg mb-2">Booking History</Text>
               {/* <BookingItem item={bookings} /> */}
 
-              {userBookings?.length > 0 ? (
+              {bookings?.length > 0 ? (
                 <>
-                  {userBookings.map((item, index) => (
+                  {bookings.map((item, index) => (
                     <View
                       key={index}
                       className="flex-row bg-white rounded-lg shadow space-x-2 p-4 mb-4"
@@ -93,7 +93,7 @@ function ProfileScreen() {
       ) : (
         <View className="flex-1 justify-center items-center ">
           <TouchableOpacity
-            className="py-3 rounded w-[100%]"
+            className="py-3 rounded w-[80%]"
             onPress={() => navigation.navigate(ROUTES.LOGIN)}
           >
             <LinearGradient

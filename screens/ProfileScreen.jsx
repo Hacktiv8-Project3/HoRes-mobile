@@ -18,11 +18,14 @@ function ProfileScreen() {
   const userData = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const bookings = useSelector((state) => state.booking.bookingsData);
-  // Filter data booking berdasarkan pengguna yang login
-  const userBookings = bookings.filter(
-    (booking) => booking?.email === userData?.email
-  );
+  // Filter data booking berdasarkan pengguna yang
+
+  // const userBookings = bookings.filter(
+  //   (booking) => booking?.email === userData?.email
+  // );
+
   // console.log("ini userbooking", bookings);
+  console.log("ini user", userData);
   return (
     <>
       {isAuthenticated ? (
@@ -51,9 +54,9 @@ function ProfileScreen() {
               <Text className="text-lg mb-2">Booking History</Text>
               {/* <BookingItem item={bookings} /> */}
 
-              {userBookings?.length > 0 ? (
+              {bookings?.length > 0 ? (
                 <>
-                  {userBookings.map((item, index) => (
+                  {bookings.map((item, index) => (
                     <View
                       key={index}
                       className="flex-row bg-white rounded-lg shadow space-x-2 p-4 mb-4"

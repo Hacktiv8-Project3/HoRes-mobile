@@ -28,19 +28,17 @@ const BookingScreen = () => {
   const [guests, setGuests] = useState("");
 
   const handleSaveBooking = () => {
-    const newBookingData = [
-      ...bookingData,
-      {
-        hotel: selectedHotel,
-        name: name,
-        email: email,
-        codePhone: codePhone,
-        phone: phone,
-        days: days,
-        rooms: rooms,
-        guests: guests,
-      },
-    ];
+    const newBookingData = {
+      // ...bookingData,
+      hotel: selectedHotel,
+      name: name,
+      email: email,
+      codePhone: codePhone,
+      phone: phone,
+      days: days,
+      rooms: rooms,
+      guests: guests,
+    };
 
     dispatch(saveBookingData(newBookingData));
     navigation.navigate(ROUTES.PROFILE);
@@ -165,15 +163,6 @@ const BookingScreen = () => {
               </Text>
             </View>
             <View className="h-2 mb-3 mt-2 border-b-2 border-gray-100"></View>
-            {/* <View className="flex flex-row justify-between">
-              <Text className="text-gray-500 font-bold tracking-wide mr-1">
-                Payable Now
-              </Text>
-              <Text className="text-[#0d9488] font-bold tracking-wide mr-1">
-                {" "}
-                &#36; 22,50{" "}
-              </Text>
-            </View> */}
           </View>
           <TouchableOpacity
             className="py-3 rounded-full"

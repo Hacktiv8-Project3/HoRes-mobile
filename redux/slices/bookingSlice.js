@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selectHotel: null,
-  bookingsData: null,
+  bookingsData: [],
 };
 
 const bookingSlice = createSlice({
@@ -13,7 +13,8 @@ const bookingSlice = createSlice({
       state.selectHotel = action.payload;
     },
     saveBookingData: (state, action) => {
-      state.bookingsData = action.payload;
+      //   state.bookingsData = action.payload;
+      state.bookingsData = [...state.bookingsData, action.payload];
     },
   },
 });

@@ -14,7 +14,7 @@ const TopDestinationsComponent = ({ hotels }) => {
           {hotels?.map((destination, idx) => (
             <TouchableOpacity
               key={idx}
-              className="mr-4 rounded-xl"
+              className="mr-4 rounded-xl shadow-black"
               onPress={() =>
                 navigation.navigate(ROUTES.DETAIL, { param: destination })
               }
@@ -25,11 +25,11 @@ const TopDestinationsComponent = ({ hotels }) => {
                     ? destination?.url_1440
                     : "../../assets/sumba.jpg",
                 }}
-                className="w-40 h-32 rounded-xl"
+                className="w-40 h-32 rounded-xl opacity-90"
                 resizeMode="cover"
               />
-              <View className="absolute top-16 px-2 py-2 ">
-                <Text className="text-gray-200 text-lg font-semibold">
+              <View className="absolute top-[80px] px-2 py-2 ">
+                <Text className="text-white text-lg font-bold outline-4">
                   {destination.name?.length > 14
                     ? `${destination?.name?.slice(0, 14)}..`
                     : destination.name}

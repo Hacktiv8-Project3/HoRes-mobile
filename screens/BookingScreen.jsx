@@ -18,7 +18,6 @@ const BookingScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const selectedHotel = useSelector((state) => state.booking.selectHotel);
-  const bookingData = useSelector((state) => state.booking.bookingsData);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [codePhone, setCodePhone] = useState("");
@@ -83,10 +82,10 @@ const BookingScreen = () => {
               return item
             }}
             /> */}
-            <Text className="mt-3 ml-2 mr-2 text-gray-700">+</Text>
+            {/* <Text className="mt-3 ml-2 mr-2 text-gray-700">+</Text> */}
             <TextInput
               className="py-2 px-3 mb-4 mr-1 text-gray-500 tracking-wide bg-white rounded-lg shadow-xl basis-1/3 truncate"
-              placeholder="Phone number"
+              placeholder="+62"
               placeholderTextColor="#C9C9C9"
               value={codePhone}
               maxLength={3}
@@ -103,7 +102,7 @@ const BookingScreen = () => {
               keyboardType="phone-pad"
             />
           </View>
-          <View className="pt-2 pl-2 pr-2 mt-5 flex flex-row items-start shadow-lg rounded-lg bg-white">
+          <View className="pt-2 pl-2 pr-2 flex flex-row items-start shadow-lg rounded-lg bg-white">
             <TextInput
               className="py-2 px-3 font-bold tracking-wide bg-white basis-[13%] truncate text-center"
               placeholder="1"

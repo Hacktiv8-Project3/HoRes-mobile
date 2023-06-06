@@ -20,11 +20,11 @@ function ProfileScreen() {
   const bookings = useSelector((state) => state.booking.bookingsData);
   // Filter data booking berdasarkan pengguna yang
 
-  // const userBookings = bookings.filter(
-  //   (booking) => booking?.email === userData?.email
-  // );
+  const userBookings = bookings.filter(
+    (booking) => booking?.email === userData?.email
+  );
 
-  // console.log("ini userbooking", bookings);
+  console.log("ini userbooking", bookings);
   console.log("ini user", userData);
   return (
     <>
@@ -54,9 +54,9 @@ function ProfileScreen() {
               <Text className="text-lg mb-2">Booking History</Text>
               {/* <BookingItem item={bookings} /> */}
 
-              {bookings?.length > 0 ? (
+              {userBookings?.length > 0 ? (
                 <>
-                  {bookings.map((item, index) => (
+                  {userBookings.map((item, index) => (
                     <View
                       key={index}
                       className="flex-row bg-white rounded-lg shadow space-x-2 p-4 mb-4"
@@ -74,8 +74,12 @@ function ProfileScreen() {
                             ? `${item?.hotel?.name?.slice(0, 14)}..`
                             : item?.hotel?.name}
                         </Text>
-                        <Text className="text-gray-500 mb-2">
+                        <Text className="text-gray-800 mb-2">
                           {item?.hotel?.city} , {item?.hotel?.country}
+                        </Text>
+                        <Text className="text-gray-500 mb-2">
+                          {item?.days} days, {item?.rooms} rooms, {item?.guests}{" "}
+                          guests
                         </Text>
                       </View>
                       <View className="absolute top-10 left-[290px]">

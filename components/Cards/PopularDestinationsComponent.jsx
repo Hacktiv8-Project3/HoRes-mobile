@@ -11,7 +11,7 @@ function PopularDestinationsComponent({ hotels }) {
       <View className="flex-1 bg-white">
         <Text className="text-2xl font-bold py-4">Popular Destinations</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {hotels.map((destination, idx) => (
+          {hotels?.map((destination, idx) => (
             <TouchableOpacity
               key={idx}
               className="mr-4 rounded-xl bg-white shadow-xl mb-4 shadow-black"

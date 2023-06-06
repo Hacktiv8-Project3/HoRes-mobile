@@ -14,7 +14,7 @@ function PopularDestinationsComponent({ hotels }) {
           {hotels.map((destination, idx) => (
             <TouchableOpacity
               key={idx}
-              className="mr-4 rounded-xl"
+              className="mr-4 rounded-xl bg-white shadow-xl mb-4 shadow-black"
               onPress={() =>
                 navigation.navigate(ROUTES.DETAIL, { param: destination })
               }
@@ -27,7 +27,7 @@ function PopularDestinationsComponent({ hotels }) {
                 }}
                 className="w-40 h-24 rounded-t-xl"
               />
-              <View className="px-2 py-2">
+              <View className="px-2 py-2 bg-white">
                 <Text className="text-black text-lg font-semibold">
                   {destination.name?.length > 14
                     ? `${destination?.name?.slice(0, 14)}..`

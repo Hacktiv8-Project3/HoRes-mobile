@@ -17,16 +17,23 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useDispatch, useSelector } from "react-redux";
 import { selectHotel } from "../redux/slices/bookingSlice";
 import { LinearGradient } from "expo-linear-gradient";
+import { addFav, removeFav } from "../redux/slices/favSlice";
 
 function DetailScreen({ route }) {
-  // const { destination } = route.params;
   const navigation = useNavigation();
-  // const route = useRoute();
-  const data = route?.params?.param;
 
+  const data = route?.params?.param;
+  const dispatch = useDispatch();
+  const favData = useSelector((state) => state.favorites.favorites);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  const dispatch = useDispatch();
+  const handleFavoriteClick = (item) => {
+    dispatch(addFav(item));
+  };
+
+  const handleUnFavoriteClick = (item) => {
+    dispatch(removeFav(item?.name));
+  };
 
   const handleCheck = () => {
     if (isAuthenticated) {
@@ -38,6 +45,28 @@ function DetailScreen({ route }) {
       navigation.navigate(ROUTES.LOGIN);
     }
   };
+
+  const isFavorite = favData.find((fav) => fav.name === data.name);
+  let button;
+  if (isFavorite) {
+    button = (
+      <TouchableOpacity
+        className="w-8 h-8 rounded-md items-center justify-center bg-white"
+        onPress={() => handleUnFavoriteClick(data)}
+      >
+        <Icon name="heart" size={20} color="#0d9488" />
+      </TouchableOpacity>
+    );
+  } else {
+    button = (
+      <TouchableOpacity
+        className="w-8 h-8 rounded-md items-center justify-center bg-white"
+        onPress={() => handleFavoriteClick(data)}
+      >
+        <Icon name="heart-o" size={20} color="#0d9488" />
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -56,16 +85,10 @@ function DetailScreen({ route }) {
           >
             <AntDesign name="left" size={24} color="#0d9488" />
           </TouchableOpacity>
-          <TouchableOpacity className="w-8 h-8 rounded-md items-center justify-center bg-white">
-            <Icon name="heart-o" size={24} color="#0d9488" />
-          </TouchableOpacity>
+          {button}
         </View>
-        <View className="absolute flex-row justify-between inset-x-0 top-[200px] px-6">
-          <View className="flex-row items-center">
-            <Text className="text-2xl font-bold text-[#78e8de]">
-              $ {data?.price}
-            </Text>
-          </View>
+        <View className="absolute bg-[#0d9488] rounded-l-full right-0 top-[190px] px-6 py-2">
+          <Text className="text-2xl font-bold text-white">$ {data?.price}</Text>
         </View>
         <View className="p-4">
           <Text className="text-2xl font-bold mb-2 text-[#0d9488]">

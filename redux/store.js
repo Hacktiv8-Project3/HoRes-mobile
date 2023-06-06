@@ -3,12 +3,14 @@ import { persistStore, persistReducer } from "redux-persist";
 import persistConfig from "../config/persistConfig";
 import authSlice from "./slices/authSlice";
 import bookingSlice from "./slices/bookingSlice";
+import favSlice from "./slices/favSlice";
 import hotelSlice from "./slices/hotelSlice";
 
 const rootReducer = combineReducers({
   hotels: hotelSlice,
   auth: authSlice,
   booking: bookingSlice,
+  favorites: favSlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

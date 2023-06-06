@@ -14,7 +14,11 @@ import { useNavigation } from "@react-navigation/native";
 import PopularDestinationsComponent from "../components/Cards/PopularDestinationsComponent";
 import SearchBarComponent from "../components/SearchBarComponent";
 import TopDestinationsComponent from "../components/Cards/TopDestinationsComponent";
-import { fetchHotelData, getAllHotel } from "../redux/slices/hotelSlice";
+import {
+  fetchHotelData,
+  fetchPop,
+  getAllHotel,
+} from "../redux/slices/hotelSlice";
 import { ROUTES } from "../constants";
 import CardResultComponent from "../components/Cards/CardResultComponent";
 

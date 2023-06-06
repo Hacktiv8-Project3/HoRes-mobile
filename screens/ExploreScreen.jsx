@@ -16,7 +16,8 @@ import SearchBarComponent from "../components/SearchBarComponent";
 import TopDestinationsComponent from "../components/Cards/TopDestinationsComponent";
 import {
   fetchHotelData,
-  fetchPop,
+  fetchHotelId,
+  fetchHotelPop,
   getAllHotel,
 } from "../redux/slices/hotelSlice";
 import { ROUTES } from "../constants";
@@ -26,10 +27,14 @@ function ExploreScreen() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const hotels = useSelector(getAllHotel);
+  const idHotels = useSelector((state) => state.hotels.top);
+  const popHotels = useSelector((state) => state.hotels.pop);
 
   useEffect(() => {
     dispatch(fetchHotelData());
-    // console.log(hotels);
+    dispatch(fetchHotelId());
+    dispatch(fetchHotelPop());
+    console.log(popHotels);
   }, [dispatch]);
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -43,8 +48,8 @@ function ExploreScreen() {
             {hotels?.length > 0 ? (
               <>
                 <SearchBarComponent />
-                <TopDestinationsComponent hotels={hotels} />
-                <PopularDestinationsComponent hotels={hotels} />
+                <TopDestinationsComponent hotels={idHotels} />
+                <PopularDestinationsComponent hotels={popHotels} />
                 <CardResultComponent hotels={hotels} />
               </>
             ) : (
